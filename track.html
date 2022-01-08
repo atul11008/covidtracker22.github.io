@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/996973c893.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- My Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- My jQuery -->
+    <script src="main.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+    <title>Covid-19 Tracker</title>
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+      .corono_update {
+       
+      }
+      .margin{
+        margin-right:3px;
+      }
+      .cardss{
+        border-radius: 8px;
+      }
+     .title{
+      font-family: 'Lobster', cursive;
+     }
+     .data{
+      position: fixed;
+     }
+     .c{
+      margin-right: 3px;
+     }
+     tr:nth-child(even) {background-color: #f2f2f2}
+    </style>
+  </head>
+  <body onload="fetch()">
+     <div class="container-fluid bg-light p-5 text-center my-3">
+      <h1 class="title">Covid-19 Tracker Of World</h1>
+      <h5 class="text-muted">
+        An opensource project to keep track of all the COVID-19 cases around the
+        world.
+      </h5>
+    </div>
+    <section class="corono_update container-fluid">
+
+ <div class="container-fluid">
+    
+         <div class="row">
+  <div class="col-xl-2 col-md-4 col-xl-4 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Cases</div>
+                                            <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="total"></div>
+                                                </div>
+                                                                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-users fa-2x text-info"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    <div class="col-xl-2 col-md-4 col-xl-4 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Total Death</div>
+                                            <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="tdeaths"></div>
+                                                </div>
+                                                                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-bed fa-2x text-danger"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    <div class="col-xl-2 col-md-4 col-xl-4 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Recovered</div>
+                                            <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="trecover"></div>
+                                                </div>
+                                                                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-child fa-2x text-success"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    <div class="col-xl-2 col-md-4 col-xl-4 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">New Cases</div>
+                                            <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"  id="nConfirmed"></div>
+                                                </div>
+                                                                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-bell fa-2x text-warning"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-xl-2 col-md-4 col-xl-4 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">New Deaths</div>
+                                            <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"  id="nDeaths"></div>
+                                                </div>
+                                                                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-bed fa-2x text-danger"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                         <div class="col-xl-2 col-md-4 col-xl-4 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">New Recovered</div>
+                                            <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"  id="nRecovered"></div>
+                                                </div>
+                                                                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-child fa-2x text-success"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+  </div> 
+        
+
+    </div>
+    <div class="container bg-light p-3 my-5 text-center">
+      <h5 class="text-info">"Prevention is the Cure."</h5>
+      <p class="text-muted">Stay Indoors Stay Safe.</p>
+    </div>
+      <div class="mb-3 text-center title">COVID-19 UPDATES FROM WHOLE WORLD</div>
+   <div class="table-responsive">
+   <table class="table table-stripped table-bordered table-hover" id="tbval">
+     <thead>
+   <tr>
+    <div class="data">
+      <th class="f">Country</th>
+   <th class="f">TotalConfirmed</th>
+   <th class="f">TotalRecovered</th>
+   <th class="f">TotalDeaths</th>
+   <th class="f">NewConfirmed</th>
+   <th class="f">NewRecovered</th>
+   <th class="f">NewDeaths</th>
+</div>
+   </tr>
+    </thead>
+
+   </table>
+   </div>
+</section>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+ <section class="section-1">
+      <div class="container text-center" id="content">
+        <div class="row">
+          <div class="col-md-6 col-12" data-aos="zoom-in-down">
+            <div class="pray">
+              <img src="https://images.newscientist.com/wp-content/uploads/2020/02/11165812/c0481846-wuhan_novel_coronavirus_illustration-spl.jpg" loading="lazy" style="width:400px;height:300px;"alt="Pray" class="" />
+            </div>
+          </div>
+          <div class="col-md-6 col-12" data-aos="fade-up-left">
+            <div class="panel text-left">
+              <h1>What is Covid-19 ?</h1>
+              <p class="pt-4">
+             Coronavirus disease 2019 (COVID-19) is an infectious disease caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2).[9] It was first identified in December 2019 in Wuhan, Hubei, China, and has resulted in an ongoing pandemic.[10][11] The first confirmed case has been traced back to 17 November 2019 in Hubei.[12] As of 23 July 2020, more than 15.2 million cases have been reported across 188 countries and territories, resulting in more than 623,000 deaths. More than 8.66 million people have recovered.[8]
+
+Common symptoms include fever, cough, fatigue, shortness of breath, and loss of smell and taste.[13][5][6][14] While the majority of cases result in mild symptoms, some progress to acute respiratory distress syndrome (ARDS) possibly precipitated by cytokine storm,[15] multi-organ failure, septic shock, and blood clots.[16][17][18] The time from exposure to onset of symptoms is typically around five days, but may range from two to fourteen days.[5][19]
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  <!--  <div class="container-fluid bg-light p-5 text-center my-3">
+      <h1 class="">Covid-19 Tracker India</h1>
+      <h5 class="text-muted">
+        An opensource project to keep track of all the COVID-19 cases around the
+        world.
+      </h5>
+    </div>
+
+    <div class="container my-5">
+      <div class="row text-center">
+        <div class="col-3 text-warning">
+          <h5>Confirmed</h5>
+          <p id="confirmed"></p>
+        </div>
+        <div class="col-3 text-info">
+          <h5>Active</h5>
+          <p id="active"></p>
+        </div>
+        <div class="col-3 text-success">
+          <h5>Recovered</h5>
+          <p id="recovered"></p>
+        </div>
+        <div class="col-3 text-danger">
+          <h5>Deceased</h5>
+          <p id="deaths"></p>
+        </div>
+      </div>
+    </div>
+-->
+    <div class="container bg-light p-3 my-5 text-center">
+      <h5 class="text-info">"Prevention is the Cure."</h5>
+      <p class="text-muted">Stay Indoors Stay Safe.</p>
+    </div>
+
+    <canvas id="myChart"></canvas>
+
+    <div class="container text-center my-5">
+      <h6 class="text-info">
+        *Click on the Confirmed/Recovered/Deaths buttons above to see the chart
+        individually.*
+      </h6>
+    </div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PSnSo9kYlH4" autoplay></iframe>
+<iframe style="margin-left:7rem;" width="560" height="315" src="https://www.youtube.com/embed/bxHF_TPTHww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <footer class="footer mt-5 py-3 bg-light">
+      <div class="container text-center">
+      
+      </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+<script>
+    $(document).ready(function () {
+  // Get JSON data from url
+  $.getJSON("https://api.covid19india.org/data.json", function (data) {
+    var states = [];
+    var confirmed = [];
+    var recovered = [];
+    var deaths = [];
+
+    var total_active;
+    var total_confirmed;
+    var total_recovered;
+    var total_deaths;
+
+    // Take the first element in statewise array and add the objects values into the above variables
+    total_active = data.statewise[0].active;
+    total_confirmed = data.statewise[0].confirmed;
+    total_recovered = data.statewise[0].recovered;
+    total_deaths = data.statewise[0].deaths;
+
+    // The each loop select a single statewise array element
+    // Take the data in that array and add it to variables
+    $.each(data.statewise, function (id, obj) {
+      states.push(obj.state);
+      confirmed.push(obj.confirmed);
+      recovered.push(obj.recovered);
+      deaths.push(obj.deaths);
+    });
+
+    // Remove the first element in the states, confirmed, recovered, and deaths as that is the total value
+    states.shift();
+    confirmed.shift();
+    recovered.shift();
+    deaths.shift();
+
+    // console.log(confirmed);
+    $("#confirmed").append(total_confirmed);
+    $("#active").append(total_active);
+    $("#recovered").append(total_recovered);
+    $("#deaths").append(total_deaths);
+
+    // Chart initialization
+    var myChart = document.getElementById("myChart").getContext("2d");
+    var chart = new Chart(myChart, {
+      type: "line",
+      data: {
+        labels: states,
+        datasets: [
+          {
+            label: "Confirmed Cases",
+            data: confirmed,
+            backgroundColor: "#f1c40f",
+            minBarLength: 100,
+          },
+          {
+            label: "Recovered",
+            data: recovered,
+            backgroundColor: "#2ecc71",
+            minBarLength: 100,
+          },
+          {
+            label: "Deceased",
+            data: deaths,
+            backgroundColor: "#e74c3c",
+            minBarLength: 100,
+          },
+        ],
+      },
+      option: {},
+    });
+  });
+});
+
+</script>
+
+<style>
+    body {
+  font-family: "Baloo Thambi 2", cursive;
+}
+</style>
+<script>
+  function fetch() {
+    $.get("https://api.covid19api.com/summary",
+
+ function (data) {
+  //console.log(data['Countries'].length);
+  var tbval=document.getElementById('tbval');
+  for(var i=1; i<(data['Countries'].length);i++){
+var x=tbval.insertRow();
+x.insertCell(0);
+tbval.rows[i].cells[0].innerHTML=data['Countries'][i-1]['Country'];
+tbval.rows[i].cells[0].style.background='';
+tbval.rows[i].cells[0].style.color='';
+
+x.insertCell(1);
+tbval.rows[i].cells[1].innerHTML=data['Countries'][i-1]['TotalConfirmed'];
+tbval.rows[i].cells[1].style.background='';
+
+x.insertCell(2);
+tbval.rows[i].cells[2].innerHTML=data['Countries'][i-1]['TotalRecovered'] ;
+tbval.rows[i].cells[2].style.background='';
+
+x.insertCell(3);
+tbval.rows[i].cells[3].innerHTML=data['Countries'][i-1]['TotalDeaths'];
+tbval.rows[i].cells[3].style.background='';
+
+
+x.insertCell(4);
+tbval.rows[i].cells[4].innerHTML=data['Countries'][i-1]['NewConfirmed'] ;
+tbval.rows[i].cells[4].style.background='';
+tbval.rows[i].cells[4].style.color='#f6c23e';
+
+
+x.insertCell(5);
+tbval.rows[i].cells[5].innerHTML=data['Countries'][i-1]['NewRecovered'];
+tbval.rows[i].cells[5].style.background='';
+
+x.insertCell(6);
+tbval.rows[i].cells[6].innerHTML=data['Countries'][i-1]['NewDeaths'];
+tbval.rows[i].cells[6].style.background='';
+tbval.rows[i].cells[6].style.color='#e74a3b';
+
+
+    }
+ document.getElementById('total').innerHTML=data['Global']['TotalConfirmed'];   
+ document.getElementById('trecover').innerHTML=data['Global']['TotalRecovered'];   
+ document.getElementById('tdeaths').innerHTML=data['Global']['TotalDeaths'];   
+ document.getElementById('nConfirmed').innerHTML=data['Global']['NewConfirmed'];   
+ document.getElementById('nRecovered').innerHTML=data['Global']['NewRecovered'];   
+ document.getElementById('nDeaths').innerHTML=data['Global']['NewDeaths'];   
+  }
+ )
+}
+</script>
+<script>
+$('.counter-count').each(function () {
+        $(this).prop('Counter',0).animate({
+            Counter: $(this).text()
+        }, {
+          
+          //chnage count up speed here
+            duration: 4000,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
+document.getElementById('video-element').disabled=true;
+</script>
+<script>
+  unction onYouTubeIframeAPIReady() {
+  var player;
+  player = new YT.Player('yt-embed', { // Replaces the <div id="yt-embed"> with an iframe
+    videoId: 'PSnSo9kYlH4', // Video ID
+    width: 960, // Video width
+    height: 600, // Video height
+    playerVars: {
+      autoplay: 1, // Auto-play
+      controls: 0, // Turn off controls
+      showinfo: 0, // Hide the video title
+      modestbranding: 1, // Hide all YouTube branding
+      loop: 1, // Loop video
+      fs: 0, // Remove full screen button
+      cc_load_policy: 1, // Turn off closed captions
+      iv_load_policy: 3,  // Turn off annotations
+      autohide: 1, // Turn off controls auto-hiding
+      rel: 0, // Turn off related content on pause
+      disablekb: 1, // Turn off keyboard controls
+    },
+    events: {
+      onReady: function(e) {
+        e.target.mute();
+      }
+    }
+  });
+}
+</script>
+   <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha256-jDnOKIOq2KNSQZTcBTEnsp76FnfMEttF6AV2DF2fFNE="crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<footer class="sticky-footer bg-light shadow">
+ <div id="content">
+    <nav class="navbar navbar-expand navbar-light text-center bg-white topbar mb-4 static-top shadow">
+      <div class="col-md-12">
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <h5 class="font-weight-bold text-uppercase mb-1" style="display: contents;">COVID-19 CORONAVIRUS Tracker</h5>
+      </div>
+                </nav>
+   
+                </div><hr>
+                    <div class="copyright text-center my-auto">
+                        <span class="font-weight-bold">Copyright &copy; COVID-19 Tracker Created & Design By Aman & Atul</span>
+                    </div>
+                </div>
+            </footer>
+            
+  </body>
+</html>
