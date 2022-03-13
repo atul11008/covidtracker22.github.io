@@ -1,55 +1,26 @@
 {
-  "short_name": "Covidtracker22",
-  "name": "Created by Atul Kumar",
+  "short_name": "Covidtrakometer",
+  "name": "covidtracker22",
   "icons": [
     {
-      "src": "https://www.un.org/sites/un2.un.org/files/covid-19.svg",
-      "type": "image/svg+xml",
-      "sizes": "512x512"
+      "src": "favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
     },
     {
-      "src": "https://www.un.org/sites/un2.un.org/files/covid-19.svg",
-      "type": "image/svg+xml",
+      "src": "android-chrome-192x192.png",
+      "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "https://www.un.org/sites/un2.un.org/files/covid-19.svg",
-      "type": "image/svg+xml",
+      "src": "android-chrome-512x512.png",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": "https://atul11008.github.io/covidtracker22.github.io/?source=pwa",
-  "background_color": "#3367D6",
+  "start_url": "/",
   "display": "standalone",
-  "scope": "/",
-  "theme_color": "#3367D6",
-  "shortcuts": [
-    {
-      "name": "Covotrack",
-      "short_name": "covotrack",
-      "description": "created by atul kumar",
-      "url": "https://atul11008.github.io/covidtracker22.github.io/?source=pwa",
-      "icons": [{ "src": "https://www.un.org/sites/un2.un.org/files/covid-19.svg", "sizes": "192x192" }]
-    },
-    {
-      "name": "Get Letest Covid Cases update",
-      "short_name": "CovoTrack",
-      "description": "created by atul",
-      "url": https://atul11008.github.io/covidtracker22.github.io/?source=pwa",
-      "icons": [{ "src": ""https://www.un.org/sites/un2.un.org/files/covid-19.svg", "sizes": "192x192" }]
-    }
-  ],
-  "description": "Created By Atul Kumar",
-  "screenshots": [
-    {
-      "src": ""https://www.un.org/sites/un2.un.org/files/covid-19.svg",
-      "type": "image/svg+xml",
-      "sizes": "540x720"
-    },
-    {
-      "src": ""https://www.un.org/sites/un2.un.org/files/covid-19.svg",
-      "type": "image/svg+xml",
-      "sizes": "540x720"
-    }
-  ]
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "orientation": "portrait"
 }
